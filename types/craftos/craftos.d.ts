@@ -484,14 +484,15 @@ declare namespace parallel {
   function waitForany(...args: (() => void)[]): void;
   function waitForAll(...args: (() => void)[]): void;
 }
+/** @noSelf **/
 interface IPeripheral {}
-
+/** @noSelf **/
 declare class CommandPeripheral implements IPeripheral {
   getCommand(): string;
   setCommand(command: string): void;
   runCommand(): LuaMultiReturn<[boolean, string | null]>;
 }
-
+/** @noSelf **/
 declare class ComputerPeripheral implements IPeripheral {
   turnOn(): void;
   shutdown(): void;
@@ -500,7 +501,7 @@ declare class ComputerPeripheral implements IPeripheral {
   isOn(): boolean;
   getLabel(): string;
 }
-
+/** @noSelf **/
 declare class DrivePeripheral implements IPeripheral {
   isDiskPresent(): boolean;
   getDiskLabel(): string;
@@ -514,7 +515,7 @@ declare class DrivePeripheral implements IPeripheral {
   ejectDisk(): void;
   getDiskID(): number;
 }
-
+/** @noSelf **/
 declare class ModemPeripheral implements IPeripheral {
   open(channel: number): void;
   isOpen(channel: number): boolean;
@@ -523,7 +524,7 @@ declare class ModemPeripheral implements IPeripheral {
   transmit(channel: number, replyChannel: number, payload: any): void;
   isWireless(): boolean;
 }
-
+/** @noSelf **/
 declare class WiredModemPeripheral extends ModemPeripheral {
   getNamesRemote(): string[];
   isPresentRemote(name: string): boolean;
@@ -532,7 +533,7 @@ declare class WiredModemPeripheral extends ModemPeripheral {
   callRemote(name: string, method: string, ...args: string[]): LuaMultiReturn<[...any[]]>;
   getNameLocal(): string;
 }
-
+/** @noSelf **/
 declare class MonitorPeripheral implements IPeripheral, ITerminal {
   write(text: string): void;
   blit(text: string, textColors: string, backgroundColors: string): void;
@@ -570,7 +571,7 @@ declare class MonitorPeripheral implements IPeripheral, ITerminal {
   setFrozen(frozen: boolean): void;
   setTextScale(scale: number): void;
 }
-
+/** @noSelf **/
 declare class PrinterPeripheral implements IPeripheral {
   write(...args: (string | number)[]): void;
   getCursorPos(): LuaMultiReturn<[number, number]>;
@@ -582,19 +583,19 @@ declare class PrinterPeripheral implements IPeripheral {
   getInkLevel(): number;
   getPaperLevel(): number;
 }
-
+/** @noSelf **/
 declare class SpeakerPeripheral implements IPeripheral {
   playSound(name: string, volume?: number, pitch?: number): void;
   playNote(name: string, volume?: number, pitch?: number): void;
   playAudio(data: number[], volume?: number): boolean;
   stop(): void;
 }
-
+/** @noSelf **/
 declare class EnergyStoragePeripheral implements IPeripheral {
   getEnergy(): number;
   getEnergyCapacity(): number;
 }
-
+/** @noSelf **/
 declare class FluidStoragePeripheral implements IPeripheral {
   tanks(): { [index: number]: { name: string; amount: number } };
   pushFluid(to: string, limit?: number, name?: string): number;
@@ -615,7 +616,7 @@ declare type ItemDetail = {
   enchantments?: { name: string; level: number; displayName: string }[];
   unbreakable?: boolean;
 };
-
+/** @noSelf **/
 declare class InventoryPeripheral implements IPeripheral {
   size(): number;
   list(): { [index: number]: { name: string; count: number; nbt?: string } };
